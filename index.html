@@ -1,12 +1,13 @@
-
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Ежедневные предсказания">
+    <meta property="og:image" content="URL_ПРЕВЬЮШКИ">
     <title>Daily Predictions</title>
     <style>
-        body {
+         body {
             margin: 0;
             padding: 20px;
             background: #f0f2f5;
@@ -67,6 +68,37 @@
             color: white;
             transform: rotateY(180deg);
         }
+        
+        .donate-container {
+            margin: 30px auto 20px;
+            text-align: center;
+            max-width: 600px;
+        }
+
+        .donate-button {
+            background: linear-gradient(45deg, #6a11cb, #2575fc);
+            color: white !important;
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(106, 17, 203, 0.4);
+            border: none;
+            cursor: pointer;
+            font-size: 1.1em;
+        }
+
+        .donate-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(106, 17, 203, 0.6);
+        }
+
+        .donate-button:active {
+            transform: translateY(0);
+            box-shadow: 0 3px 10px rgba(106, 17, 203, 0.4);
+        }
     </style>
 </head>
 <body>
@@ -74,30 +106,49 @@
         <div class="card" onclick="flipCard(this)">
             <div class="card-inner">
                 <div class="card-front">Предсказание 1</div>
-                <div class="card-back">Сегодня вас ждет приятный сюрприз!</div>
+                <div class="card-back">Если опоздали к рассвету любуйтесь закатом!</div>
             </div>
         </div>
         <div class="card" onclick="flipCard(this)">
             <div class="card-inner">
                 <div class="card-front">Предсказание 2</div>
-                <div class="card-back">Встреча изменит ваши планы!</div>
+                <div class="card-back">Удача сопутствует твоим планам на следующей неделе!</div>
             </div>
         </div>
         <div class="card" onclick="flipCard(this)">
             <div class="card-inner">
                 <div class="card-front">Предсказание 3</div>
-                <div class="card-back">Финансовая удача на вашей стороне!</div>
+                <div class="card-back">Сегодня чаще смотри по сторонам, рядом кое-что интересное!</div>
             </div>
         </div>
         <div class="card" onclick="flipCard(this)">
             <div class="card-inner">
                 <div class="card-front">Предсказание 4</div>
-                <div class="card-back">Новое хобби принесет радость!</div>
+                <div class="card-back">Будь смелее в своем выборе. Мало знать себе цену — надо еще пользоваться спросом.</div>
             </div>
         </div>
     </div>
+    
+    <div class="donate-container">
+        <a href="https://www.tbank.ru/cf/3nzi9DfL8Jj" 
+           target="_blank" 
+           class="donate-button"
+           onclick="trackDonate()">
+            ☕ Поддержать автора
+        </a>
+        <p class="donate-hint">Ваша поддержка помогает развивать проект! 💖</p>
+    </div>
 
     <script>
+        // Добавьте это для отслеживания кликов (необязательно)
+        function trackDonate() {
+            if(typeof Telegram !== 'undefined') {
+                Telegram.WebApp.sendData(JSON.stringify({
+                    action: 'donate_click'
+                }));
+            }
+        }
+
         function flipCard(card) {
             card.classList.toggle('flipped');
             
@@ -106,7 +157,6 @@
             setTimeout(() => {
                 card.classList.remove('flipped');
             }, 5000);
-        }
     </script>
 </body>
 </html>
