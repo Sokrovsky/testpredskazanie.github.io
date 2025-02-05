@@ -140,15 +140,6 @@
     </div>
 
     <script>
-        // Добавьте это для отслеживания кликов (необязательно)
-        function trackDonate() {
-            if(typeof Telegram !== 'undefined') {
-                Telegram.WebApp.sendData(JSON.stringify({
-                    action: 'donate_click'
-                }));
-            }
-        }
-
         function flipCard(card) {
             card.classList.toggle('flipped');
             
